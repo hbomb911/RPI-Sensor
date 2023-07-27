@@ -1,0 +1,39 @@
+# Requires RPI w/ dht22 temp/humidity sensor attached
+
+# Tutorial Link
+https://github.com/rsaikali/dht22-mqtt/tree/master
+
+apt-get install --no-install-recommends -y libgpiod2 gcc build-essential
+
+git clone https://github.com/rsaikali/dht22-mqtt.git
+cd dht22-mqtt
+
+pip3 install -r requirements.txt
+
+
+
+## Defaults Values if nothing is provided
+
+# Which Raspberry GPIO pin to use
+export DHT22_PIN=4
+# How many seconds between measures
+export DHT22_CHECK_EVERY=10
+
+# MQTT broker host
+export MQTT_SERVICE_HOST=mosquitto.local
+# MQTT broker port
+export MQTT_SERVICE_PORT=1883
+# MQTT broker user - optional
+export MQTT_SERVICE_USER=mqtt_user
+# MQTT broker password - optional
+export MQTT_SERVICE_PASSWORD=very_strong_password
+ 
+# MQTT broker topic to publish measures
+export MQTT_SERVICE_TOPIC=home/livingroom
+# MQTT client ID (default will be the hostname)
+export MQTT_CLIENT_ID=dht22-mqtt-service
+
+
+
+# Launch Application
+python ./dht22-mqtt.py
